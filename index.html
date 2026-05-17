@@ -2208,7 +2208,31 @@
     appId: "1:954397579065:web:11d4d4f9314e3621cbbae8",
     measurementId: "G-YCLP825PZB"
   };
+// ==========================================
+  // RESTORED MULTI-STEP FORM NAVIGATION LOGIC
+  // ==========================================
+  
+  // This handles the filtering tabs on your inspection dashboard
+  function filterAdminGrid(criterionFilterTypeString) {
+      adminFilteringCriterion = criterionFilterTypeString;
+      ['all', 'pending', 'verified'].forEach(type => {
+          const element = document.getElementById(`atab-${type}`);
+          if (element) {
+              element.classList.toggle('active', type === criterionFilterTypeString);
+          }
+      });
+      rebuildAdminAuditGrid();
+  }
 
+  // This handles form multi-step button progression ("Continue to Media", etc.)
+  function navigateFormStep(currentStepId, nextStepId) {
+      const currentStepElement = document.getElementById(currentStepId);
+      const nextStepElement = document.getElementById(nextStepId);
+      if (currentStepElement && nextStepElement) {
+          currentStepElement.style.display = 'none';
+          nextStepElement.style.display = 'block';
+      }
+  }
   // Initialize Firebase Connection
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
