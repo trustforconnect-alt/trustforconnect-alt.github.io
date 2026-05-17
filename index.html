@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRUST — Pakistan's Premier Real Estate Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8CB7A;
+    --gold-dark: #8B6914;
+    --navy: #0D1B2A;
+    --navy-mid: #162235;
+    --navy-light: #1E3248;
+    --cream: #F9F5EE;
+    --cream-dark: #EDE6D8;
+    --text-muted: #8A9BB0;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5vw;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .logo span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    vertical-align: middle;
+    margin: 0 2px 3px;
+  }
+
+  .nav-cta {
+    padding: 0.55rem 1.4rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 5vw 5rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  }
+
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 70%);
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .eyebrow::before, .eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    vertical-align: middle;
+    margin: 0 12px;
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+
+  .hero h1 .line-gold {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 1.75rem auto 0;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem auto;
+  }
+
+  /* STATS */
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* WAITLIST FORM */
+  .waitlist-form {
+    display: flex;
+    gap: 0;
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.3), 0 0 40px rgba(201,168,76,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .waitlist-form input {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    border: none;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+  }
+
+  .waitlist-form input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .waitlist-form button {
+    padding: 1rem 1.75rem;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .waitlist-form button:hover {
+    background: var(--gold-light);
+  }
+
+  .waitlist-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.85rem;
+    position: relative;
+  }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 1rem 2rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* FEATURES */
+  .features {
+    padding: 7rem 5vw;
+    background: var(--navy-mid);
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border: 1.5px solid rgba(201,168,76,0.15);
+  }
+
+  .card {
+    padding: 2.5rem 2rem;
+    background: var(--navy);
+    position: relative;
+    transition: background 0.3s ease;
+    border: 1.5px solid rgba(201,168,76,0.08);
+  }
+
+  .card:hover {
+    background: var(--navy-light);
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 7rem 5vw;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.1) 100%);
+  }
+
+  .step {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: var(--navy);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-body p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 7rem 5vw;
+    background: var(--navy-mid);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'TRUST';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 20vw;
+    font-weight: 900;
+    color: rgba(201,168,76,0.03);
+    letter-spacing: 0.2em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .cta-section .waitlist-form,
+  .cta-section .waitlist-note,
+  .cta-section .success-msg { position: relative; }
+
+  /* PROPERTY LISTING APP WORKFLOW SECTION */
+  .interactive-section {
+    padding: 7rem 5vw;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .listing-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  @media(max-width: 900px) {
+    .listing-layout { grid-template-columns: 1fr; }
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 5vw;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .logo { font-size: 1.2rem; }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .anim { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+  .anim-1 { animation-delay: 0.1s; }
+  .anim-2 { animation-delay: 0.25s; }
+  .anim-3 { animation-delay: 0.4s; }
+  .anim-4 { animation-delay: 0.55s; }
+  .anim-5 { animation-delay: 0.7s; }
+  .anim-6 { animation-delay: 0.85s; }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: rgba(201,168,76,0.08);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden;
+    padding: 0.7rem 0;
+    white-space: nowrap;
+  }
+
+  .ticker {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* COUNTER */
+  .waitlist-count {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--gold-light);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .pulse-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* LISTING FORM STYLES */
+  .lst-card {
+    background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 8px;
+    padding: 2.25rem 2rem;
+  }
+
+  .lst-step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--cream);
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .lst-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) { .lst-row { grid-template-columns: 1fr; } }
+
+  .lst-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .lst-field label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .lst-field input,
+  .lst-field select,
+  .lst-field textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .lst-field input:focus,
+  .lst-field select:focus,
+  .lst-field textarea:focus {
+    border-color: rgba(201,168,76,0.6);
+  }
+
+  .lst-field select option { background: var(--navy); }
+  .lst-field textarea { resize: vertical; min-height: 100px; }
+
+  .toggle-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tgl-btn {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid rgba(201,168,76,0.25);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tgl-btn.active {
+    background: rgba(201,168,76,0.15);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .amenity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .amen {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .amen:hover { border-color: rgba(201,168,76,0.3); color: var(--cream); }
+  .amen input { accent-color: var(--gold); }
+
+  .upload-zone {
+    border: 1.5px dashed rgba(201,168,76,0.3);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .upload-zone:hover {
+    border-color: rgba(201,168,76,0.6);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .lst-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .lst-btn-next {
+    padding: 0.75rem 1.75rem;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lst-btn-next:hover { background: var(--gold); color: var(--navy); }
+
+  .lst-btn-back {
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .lst-btn-back:hover { border-color: rgba(201,168,76,0.4); color: var(--cream); }
+
+  /* PROGRESS TRACKER */
+  .progress-tracker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .prog-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex: 0 0 auto;
+  }
+
+  .prog-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(201,168,76,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--navy);
+    transition: all 0.3s;
+  }
+
+  .prog-step span {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.3s;
+  }
+
+  .prog-step.active .prog-dot {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+  }
+
+  .prog-step.active span { color: var(--gold-light); }
+  .prog-step.done .prog-dot { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .prog-step.done span { color: var(--gold); }
+
+  .prog-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(201,168,76,0.15);
+    margin-bottom: 20px;
+    transition: background 0.4s;
+  }
+
+  .prog-line.done { background: rgba(201,168,76,0.5); }
+
+  /* PHOTO/VIDEO DISPLAY & MOCK UPLOAD STYLES */
+  #photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 1rem;
+  }
+
+  .upload-tab-bar {
+    display: flex;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 1.25rem;
+  }
+
+  .upload-tab {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .upload-tab:last-child { border-right: none; }
+  .upload-tab.active { background: rgba(201,168,76,0.12); color: var(--gold-light); }
+  .upload-tab:hover:not(.active) { background: rgba(255,255,255,0.04); color: var(--cream); }
+
+  .upload-zone.drag-over {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .media-thumb-wrap {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .media-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .media-thumb-wrap .watermark-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .media-thumb-wrap .watermark-overlay span {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(201,168,76,0.45);
+    transform: rotate(-25deg);
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: 0 0 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+  }
+
+  .media-thumb-wrap .remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    background: rgba(13,27,42,0.85);
+    border: 1px solid rgba(239,68,68,0.4);
+    color: #f87171;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 5;
+    transition: background 0.15s;
+  }
+
+  .media-thumb-wrap .remove-btn:hover { background: rgba(239,68,68,0.3); }
+
+  .media-thumb-wrap .cover-badge {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(201,168,76,0.85);
+    color: var(--navy);
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 2px 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .media-thumb-wrap .set-cover-btn {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(13,27,42,0.75);
+    color: var(--text-muted);
+    font-size: 0.58rem;
+    text-align: center;
+    padding: 3px 0;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.15s;
+    display: none;
+  }
+
+  .media-thumb-wrap:hover .set-cover-btn { display: block; }
+
+  .upload-progress {
+    height: 3px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .upload-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .upload-error-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 0.75rem;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-size: 0.78rem;
+    color: #f87171;
+  }
+
+  .video-preview-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 5px;
+    position: relative;
+    margin-top: 12px;
+  }
+
+  .video-icon-box {
+    width: 50px; height: 50px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* REVIEW ROWS */
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .review-row:last-child { border-bottom: none; }
+  .review-row .rl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .review-row .rv { font-size: 0.9rem; color: var(--cream); text-align: right; max-width: 60%; }
+
+  /* STATUS BADGES */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 2px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .badge-pending { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.3); }
+  .badge-verified { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+  .badge-rejected { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+
+  /* ADMIN PANEL STYLES */
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .admin-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .admin-tab {
+    padding: 0.55rem 1.25rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 3px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    background: transparent;
+  }
+
+  .admin-tab.active, .admin-tab:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(201,168,76,0.08); }
+
+  .tab-count {
+    background: rgba(201,168,76,0.2);
+    color: var(--gold);
+    font-size: 0.72rem;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  .admin-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .admin-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .admin-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .admin-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+  }
+
+  .admin-card-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2px;
+  }
+
+  .admin-card-meta span { display: flex; align-items: center; gap: 4px; }
+
+  .admin-actions {
+    display: flex;
+    gap: 8px;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(201,168,76,0.08);
+    flex-wrap: wrap;
+  }
+
+  .btn-verify {
+    padding: 0.45rem 1.1rem;
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #4ade80;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-verify:hover { background: rgba(34,197,94,0.25); }
+
+  .btn-reject {
+    padding: 0.45rem 1.1rem;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #f87171;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-reject:hover { background: rgba(239,68,68,0.2); }
+
+  .btn-view-details {
+    padding: 0.45rem 1.1rem;
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-view-details:hover { border-color: rgba(201,168,76,0.4); color: var(--cream); }
+
+  /* SECURE MEDIA */
+  #photo-grid img,
+  #video-preview-area video,
+  .admin-card img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">TRUST<span></span></a>
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="#list-property" class="nav-cta" style="border-color:rgba(201,168,76,0.4);color:var(--text-muted);">List Property</a>
+    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    <a href="#admin-panel" class="nav-cta" style="border-color:rgba(201,168,76,0.25);color:var(--text-muted);font-size:0.78rem;">Admin ↗</a>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top:70px;">
+  <div class="ticker">
+    &nbsp;&nbsp;&nbsp;Karachi &nbsp;·&nbsp; Lahore &nbsp;·&nbsp; Islamabad &nbsp;·&nbsp; Peshawar &nbsp;·&nbsp; Quetta &nbsp;·&nbsp; Faisalabad &nbsp;·&nbsp; Multan &nbsp;·&nbsp; Rawalpindi &nbsp;·&nbsp; DHA &nbsp;·&nbsp; Bahria Town &nbsp;·&nbsp; Gulshan &nbsp;·&nbsp; Defence &nbsp;·&nbsp; PECHS &nbsp;·&nbsp; Clifton &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Karachi &nbsp;·&nbsp; Lahore &nbsp;·&nbsp; Islamabad &nbsp;·&nbsp; Peshawar &nbsp;·&nbsp; Quetta &nbsp;·&nbsp; Faisalabad &nbsp;·&nbsp; Multan &nbsp;·&nbsp; Rawalpindi &nbsp;·&nbsp; DHA &nbsp;·&nbsp; Bahria Town &nbsp;·&nbsp; Gulshan &nbsp;·&nbsp; Defence &nbsp;·&nbsp; PECHS &nbsp;·&nbsp; Clifton &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+
+  <p class="eyebrow anim anim-1">Pakistan's Real Estate — Reimagined</p>
+
+  <h1 class="anim anim-2">
+    Find Your<br>
+    <span class="line-gold">Perfect</span><br>
+    Property
+  </h1>
+
+  <p class="hero-sub anim anim-3">
+    TRUST connects buyers, sellers, and renters across Pakistan with verified listings, transparent pricing, and unmatched local expertise.
+  </p>
+
+  <div class="hero-divider anim anim-3"></div>
+
+  <div class="stats-row anim anim-4">
+    <div class="stat">
+      <div class="stat-num">50K+</div>
+      <div class="stat-label">Listings at Launch</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12</div>
+      <div class="stat-label">Major Cities</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Verified Properties</div>
+    </div>
+  </div>
+
+  <div class="waitlist-count anim anim-5">
+    <span class="pulse-dot"></span> <strong class="waitlist-count-val">2,481</strong> people already on the waitlist
+  </div>
+
+  <div class="anim anim-6" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+    <div class="waitlist-form" id="hero-form-wrap">
+      <input type="email" id="hero-email" placeholder="Enter your email address" />
+      <button onclick="joinWaitlist('hero')">Get Early Access</button>
+    </div>
+    <div class="success-msg" id="hero-success">
+      ✦ &nbsp;You're on the list! We'll notify you when TRUST launches.
+    </div>
+    <p class="waitlist-note">No spam. Early access + exclusive launch offers.</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-header">
+    <p class="section-eyebrow">Why TRUST</p>
+    <h2 class="section-title">Built for Pakistan.<br>Designed to Deliver.</h2>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg>
+      </div>
+      <h3>Verified Listings Only</h3>
+      <p>Every property is individually verified by our team. No fakes, no duplicates — just real homes and real deals.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      </div>
+      <h3>Transparent Pricing</h3>
+      <p>Real market prices backed by data. No hidden fees, no inflated commissions — what you see is what you pay.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Residential & Commercial</h3>
+      <p>Houses, flats, plots, shops, offices — browse every property type across all major Pakistani cities.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h3>Neighbourhood Insights</h3>
+      <p>School ratings, commute times, safety scores, and local amenities — everything you need before you decide.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <h3>Trusted Agents</h3>
+      <p>Our vetted network of licensed agents is ready to guide you. Rate them, review them, trust them.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+      </div>
+      <h3>Mobile-First Experience</h3>
+      <p>Browse, inquire, and schedule visits right from your phone — seamlessly built for life on the go.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="padding:7rem 5vw; background: var(--navy);">
+  <div class="how" style="max-width:800px;margin:0 auto;">
+    <div class="section-header">
+      <p class="section-eyebrow">The Process</p>
+      <h2 class="section-title">How TRUST Works</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Search Your City</h4>
+          <p>Filter by location, type, budget, and size. Our intelligent search surfaces only the properties that truly match what you're looking for.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Explore with Confidence</h4>
+          <p>View high-res photos, virtual tours, floor plans, and verified ownership documents — all in one place, before you visit.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Connect with the Agent</h4>
+          <p>Chat or call directly through TRUST. Our agents respond in minutes and can schedule site visits at your convenience.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Close the Deal</h4>
+          <p>We help you with legal checks, documentation, and negotiation — so you move in with zero stress and total peace of mind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTY CREATION WORKFLOW SECTION -->
+<section class="interactive-section" id="list-property">
+  <div class="section-header">
+    <p class="section-eyebrow">List Your Asset</p>
+    <h2 class="section-title">Property Submission Portal</h2>
+  </div>
+
+  <!-- Progress Steps Tracker Bar -->
+  <div class="progress-tracker">
+    <div class="prog-step active" id="pstep-1">
+      <div class="prog-dot">1</div>
+      <span>Details</span>
+    </div>
+    <div class="prog-line" id="pline-1"></div>
+    <div class="prog-step" id="pstep-2">
+      <div class="prog-dot">2</div>
+      <span>Media</span>
+    </div>
+    <div class="prog-line" id="pline-2"></div>
+    <div class="prog-step" id="pstep-3">
+      <div class="prog-dot">3</div>
+      <span>Review</span>
+    </div>
+  </div>
+
+  <div class="listing-layout">
+    <!-- Form Workspace Card -->
+    <div class="lst-card">
+      
+      <!-- STEP 1: Core Details Form -->
+      <div id="step-panel-1">
+        <h3 class="lst-step-title">Property Information</h3>
+        
+        <div class="lst-row">
+          <div class="lst-field">
+            <label>Purpose</label>
+            <div class="toggle-group">
+              <button class="tgl-btn active" onclick="setToggleValue('purpose', 'Sale', this)">For Sale</button>
+              <button class="tgl-btn" onclick="setToggleValue('purpose', 'Rent', this)">Rent</button>
+            </div>
+          </div>
+          <div class="lst-field">
+            <label>Property Type</label>
+            <select id="field-type">
+              <option value="House">House</option>
+              <option value="Flat / Apartment">Flat / Apartment</option>
+              <option value="Plot">Plot / Land</option>
+              <option value="Commercial Space">Commercial Space</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="lst-field" style="margin-bottom:1rem;">
+          <label>Listing Title</label>
+          <input type="text" id="field-title" placeholder="e.g., 500 Sq Yd Modern Luxury Villa in DHA Phase 6" />
+        </div>
+
+        <div class="lst-row">
+          <div class="lst-field">
+            <label>City</label>
+            <select id="field-city">
+              <option value="Karachi">Karachi</option>
+              <option value="Lahore">Lahore</option>
+              <option value="Islamabad">Islamabad</option>
+              <option value="Rawalpindi">Rawalpindi</option>
+            </select>
+          </div>
+          <div class="lst-field">
+            <label>Location / Area</label>
+            <input type="text" id="field-area" placeholder="e.g., DHA Phase 6, Khayaban-e-Ittehad" />
+          </div>
+        </div>
+
+        <div class="lst-row">
+          <div class="lst-field">
+            <label>Price (PKR)</label>
+            <input type="number" id="field-price" placeholder="e.g., 85000000" />
+          </div>
+          <div class="lst-field">
+            <label>Size / Area Value</label>
+            <input type="text" id="field-size" placeholder="e.g., 500 Sq. Yd. / 1 Kanal" />
+          </div>
+        </div>
+
+        <div class="lst-row" id="residential-specs">
+          <div class="lst-field">
+            <label>Bedrooms</label>
+            <select id="field-beds">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+              <option value="6+">6+</option>
+            </select>
+          </div>
+          <div class="lst-field">
+            <label>Bathrooms</label>
+            <select id="field-baths">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="lst-field" style="margin-bottom:1.5rem;">
+          <label>Description</label>
+          <textarea id="field-desc" placeholder="Provide details about architectural layout, amenities, nearby hotspots..."></textarea>
+        </div>
+
+        <div class="lst-field">
+          <label style="margin-bottom:0.5rem;">Key Amenities</label>
+          <div class="amenity-grid">
+            <label class="amen"><input type="checkbox" value="Gated Community" checked> Gated Security</label>
+            <label class="amen"><input type="checkbox" value="Backup Generator" checked> Power Backup</label>
+            <label class="amen"><input type="checkbox" value="Corner Plot"> Corner Plot</label>
+            <label class="amen"><input type="checkbox" value="Car Parking" checked> Car Parking</label>
+            <label class="amen"><input type="checkbox" value="Elevator"> Elevator</label>
+            <label class="amen"><input type="checkbox" value="Water Boring" checked> Water Boring</label>
+          </div>
+        </div>
+
+        <div class="lst-nav">
+          <div></div>
+          <button class="lst-btn-next" onclick="navigateToStep(2)">Continue to Media ➔</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Secure Media Asset Manager -->
+      <div id="step-panel-2" style="display:none;">
+        <h3 class="lst-step-title">Secure Media Assets</h3>
+        
+        <div class="upload-tab-bar">
+          <button class="upload-tab active" id="tab-photos-btn" onclick="switchUploadTab('photos')">Photos & System Watermarking</button>
+          <button class="upload-tab" id="tab-videos-btn" onclick="switchUploadTab('videos')">HD Cinematic Video</button>
+        </div>
+
+        <!-- Error Workspace Logs Container -->
+        <div id="upload-error-log"></div>
+
+        <!-- Panel Area For Photos Upload Container -->
+        <div id="upload-photos-panel">
+          <div class="upload-zone" id="photo-dropzone">
+            <svg style="width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.5;margin-bottom:0.5rem;" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+            <p style="font-size:0.9rem;color:var(--cream);margin-bottom:0.25rem;">Drag and drop property photographs</p>
+            <p style="font-size:0.75rem;color:var(--text-muted);">Supports JPEG, PNG up to 5MB each</p>
+            <input type="file" id="photo-file-input" multiple accept="image/jpeg, image/png" style="display:none;" />
+          </div>
+
+          <div id="photo-progress-wrap" style="display:none; margin-top:10px;">
+            <p style="font-size:0.75rem; color:var(--gold-light);">Watermarking assets and building cryptographic grid bindings...</p>
+            <div class="upload-progress"><div class="upload-progress-bar" id="photo-bar"></div></div>
+          </div>
+
+          <div id="photo-grid"></div>
+        </div>
+
+        <!-- Panel Area For Video Upload Container -->
+        <div id="upload-videos-panel" style="display:none;">
+          <div class="upload-zone" id="video-dropzone">
+            <svg style="width:32px;height:32px;stroke:var(--gold);fill:none;stroke-width:1.5;margin-bottom:0.5rem;" viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h7M17 7h7"/>
+            </svg>
+            <p style="font-size:0.9rem;color:var(--cream);margin-bottom:0.25rem;">Upload property walk-through clip</p>
+            <p style="font-size:0.75rem;color:var(--text-muted);">Maximum 1 video clip file. Format: MP4 up to 30MB</p>
+            <input type="file" id="video-file-input" accept="video/mp4" style="display:none;" />
+          </div>
+
+          <div id="video-progress-wrap" style="display:none; margin-top:10px;">
+            <p style="font-size:0.75rem; color:var(--gold-light);">Injecting secure framing profiles onto stream layer...</p>
+            <div class="upload-progress"><div class="upload-progress-bar" id="video-bar"></div></div>
+          </div>
+
+          <div id="video-preview-area"></div>
+        </div>
+
+        <div class="lst-nav">
+          <button class="lst-btn-back" onclick="navigateToStep(1)">Back</button>
+          <button class="lst-btn-next" onclick="navigateToStep(3)">Review Overview ➔</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Complete Manifest Review Form -->
+      <div id="step-panel-3" style="display:none;">
+        <h3 class="lst-step-title">Review Manifest Data</h3>
+        
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">
+          Please review the property metadata payload structure before deploying data transmission lines to checking desks.
+        </p>
+
+        <div style="border:1px solid rgba(201,168,76,0.15); border-radius:4px; overflow:hidden; margin-bottom:1.5rem;" id="review-data-table">
+          <!-- Populated by system js engine scripts -->
+        </div>
+
+        <div class="lst-nav">
+          <button class="lst-btn-back" onclick="navigateToStep(2)">Back</button>
+          <button class="lst-btn-next" style="background:var(--gold); color:var(--navy);" onclick="commitManifestSubmission()">Submit Listing Payload</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Execution Manifest Monitor Sidebar -->
+    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+      <div class="lst-card" style="border-color:rgba(201,168,76,0.12); padding:1.5rem;">
+        <h4 style="font-family:'Playfair Display', serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:1rem; display:flex; align-items:center; gap:8px;">
+          <span style="display:inline-block; width:8px; height:8px; background:#4ade80; border-radius:50%;"></span>
+          Listing Sandbox Console
+        </h4>
+        <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.6; margin-bottom:1rem;">
+          The system caches details here locally on your machine. This panel updates in real-time.
+        </p>
+        <div style="background:rgba(0,0,0,0.25); border-radius:4px; padding:1rem; font-family:monospace; font-size:0.75rem; color:#4ade80; overflow-x:auto; max-height:300px;" id="json-sandbox-inspector">
+          {}
+        </div>
+      </div>
+
+      <div class="lst-card" style="border-color:rgba(201,168,76,0.1); padding:1.5rem; background:rgba(22,34,53,0.4);">
+        <h5 style="color:var(--cream); font-size:0.85rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em;">Security Standards</h5>
+        <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">
+          All images automatically receive non-destructive anti-theft dynamic alpha visual watermarks upon staging. Context-menus and system hotkey canvas dragging operations are locked to prevent scrape attacks from unauthorized real estate aggregators.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN AUDIT CONTROL DESK -->
+<section style="background:var(--navy-mid); border-top:1px solid rgba(201,168,76,0.15); padding:7rem 5vw;" id="admin-panel">
+  <div class="interactive-section" style="padding:0; max-width:1100px;">
+    
+    <div class="admin-header">
+      <div>
+        <p class="section-eyebrow" style="margin-bottom:0.3rem;">Verification Engine Dashboard</p>
+        <h2 class="section-title" style="font-size:1.8rem;">Regulatory Inspection Panel</h2>
+      </div>
+      
+      <div class="admin-tabs">
+        <button class="admin-tab active" id="atab-all" onclick="filterAdminGrid('all')">All Submissions <span class="tab-count" id="count-all">0</span></button>
+        <button class="admin-tab" id="atab-pending" onclick="filterAdminGrid('pending')">Pending <span class="tab-count" id="count-pending" style="background:rgba(201,168,76,0.2); color:var(--gold-light);">0</span></button>
+        <button class="admin-tab" id="atab-verified" onclick="filterAdminGrid('verified')">Verified <span class="tab-count" id="count-verified" style="background:rgba(34,197,94,0.2); color:#4ade80;">0</span></button>
+      </div>
+    </div>
+
+    <!-- Admin Dynamic Render Control Grid Container -->
+    <div class="admin-grid-layout" id="admin-listings-target-container">
+      <!-- Injected row frames inside system scripts state array -->
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA WAITLIST -->
+<section class="cta-section" id="waitlist">
+  <h2>Be First in Line</h2>
+  <p>Join thousands of Pakistanis waiting for a smarter, more trustworthy way to find property. Early members get exclusive perks.</p>
+
+  <div class="waitlist-count" style="position:relative;">
+    <span class="pulse-dot"></span> <strong class="waitlist-count-val">2,481</strong> people already on the waitlist
+  </div>
+
+  <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+    <div class="waitlist-form" id="cta-form-wrap">
+      <input type="email" id="cta-email" placeholder="Enter your email address" />
+      <button onclick="joinWaitlist('cta')">Get Early Access</button>
+    </div>
+    <div class="success-msg" id="cta-success">
+      ✦ &nbsp;You're on the list! We'll notify you when TRUST launches.
+    </div>
+    <p class="waitlist-note">No spam. Early access + exclusive launch offers.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">TRUST<span></span></a>
+  <p>&copy; 2026 TRUST Real Estate Platform Pakistan. All luxury rights reserved.</p>
+</footer>
+
+<script>
+  /************************************************************
+   * GLOBAL APP ENGINE SYSTEM STATE DATA STORES
+   ************************************************************/
+  let waitlistCount = 2481;
+  let activeSubmissionStep = 1;
+  let currentActiveUploadTab = 'photos';
+  let adminFilteringCriterion = 'all';
+
+  // Global Structure Object mirroring input states
+  let propertyFormPayload = {
+    purpose: 'Sale',
+    type: 'House',
+    title: '',
+    city: 'Karachi',
+    area: '',
+    price: '',
+    size: '',
+    beds: '4',
+    baths: '4',
+    description: '',
+    amenities: ['Gated Community', 'Backup Generator', 'Car Parking', 'Water Boring'],
+    photos: [], // Base64 data urls strings arrays mapped
+    coverPhotoIndex: 0,
+    video: null // Contains object if uploaded {name, size}
+  };
+
+  // Mock Persistent Registry Array simulating centralized server storage database
+  let databaseRegistryStore = [
+    {
+      id: "PROP-98102",
+      title: "8 Kanal Majestic Palatial Commercial Plot",
+      purpose: "Sale",
+      type: "Plot",
+      city: "Lahore",
+      area: "Main Boulevard, DHA Phase 8",
+      price: "450000000",
+      size: "8 Kanal",
+      beds: "N/A",
+      baths: "N/A",
+      description: "Prime direct main corridor corner land location perfectly optimized for multi-tier retail plaza development models or corporate headquarters build matrices.",
+      amenities: ["Corner Plot", "Gated Community"],
+      photos: ["https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80"],
+      coverPhotoIndex: 0,
+      video: null,
+      status: "pending",
+      timestamp: "Just now"
+    },
+    {
+      id: "PROP-34012",
+      title: "Contemporary 4 Bed Luxury Penthouse Duplex Suite",
+      purpose: "Rent",
+      type: "Flat / Apartment",
+      city: "Islamabad",
+      area: "E-11 Sector Highrise Residency Block",
+      price: "350000",
+      size: "4500 Sq. Ft.",
+      beds: "4",
+      baths: "4",
+      description: "Panoramic full floor views overlooking Margalla Hills range arrays. Outfitted with imported fittings, private smart access elevator shafts and climate profiles.",
+      amenities: ["Gated Community", "Backup Generator", "Car Parking", "Elevator"],
+      photos: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80"],
+      coverPhotoIndex: 0,
+      video: { name: "cinematic_walkthrough_h264.mp4", size: "18.4 MB" },
+      status: "verified",
+      timestamp: "2 hours ago"
+    }
+  ];
+
+  /************************************************************
+   * KERNEL ENGINE INITIALIZATION HOOKS
+   ************************************************************/
+  document.addEventListener("DOMContentLoaded", function() {
+    // Attach realtime live keyboard/change monitor inputs inside form structure fields
+    setupRealtimeFormListeners();
+    setupDropzoneInterventions();
+    
+    // Refresh structural markup layout views
+    syncPayloadToSandboxInspector();
+    rebuildAdminAuditGrid();
+  });
+
+  /************************************************************
+   * WAITLIST REGISTRATION CONTROLLER ENGINE
+   ************************************************************/
+  function joinWaitlist(contextPrefix) {
+    const emailField = document.getElementById(`${contextPrefix}-email`);
+    const formWrap = document.getElementById(`${contextPrefix}-form-wrap`);
+    const successBox = document.getElementById(`${contextPrefix}-success`);
+    
+    if (!emailField || !emailField.value || !emailField.value.includes('@')) {
+      alert("Please specify a valid electronic mail address payload path.");
+      return;
+    }
+
+    waitlistCount++;
+    
+    // Global text updates loop execution across instances
+    document.querySelectorAll('.waitlist-count-val').forEach(el => {
+      el.textContent = waitlistCount.toLocaleString();
+    });
+
+    formWrap.style.display = 'none';
+    successBox.style.display = 'block';
+  }
+
+  /************************************************************
+   * INTERACTIVE MULTI-STEP WORKFLOW CONTROLLER
+   ************************************************************/
+  function setToggleValue(fieldName, exactValue, buttonNode) {
+    propertyFormPayload[fieldName] = exactValue;
+    
+    // Toggle active visually inside context collection siblings array ring
+    const buttons = buttonNode.parentNode.querySelectorAll('.tgl-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttonNode.classList.add('active');
+    
+    syncPayloadToSandboxInspector();
+  }
+
+  function setupRealtimeFormListeners() {
+    // Structural inputs tracking array
+    const fieldIds = ['field-title', 'field-type', 'field-city', 'field-area', 'field-price', 'field-size', 'field-beds', 'field-baths', 'field-desc'];
+    
+    fieldIds.forEach(id => {
+      const element = document.getElementById(id);
+      if(!element) return;
+      
+      const eventType = element.tagName === 'SELECT' ? 'change' : 'input';
+      element.addEventListener(eventType, function(e) {
+        const structuralPropertyKey = id.replace('field-', '');
+        propertyFormPayload[structuralPropertyKey] = e.target.value;
+        
+        // Hide bedroom configurations if Plot selected to save layout screen spaces
+        if(id === 'field-type') {
+          const specPanel = document.getElementById('residential-specs');
+          if(e.target.value === 'Plot') {
+            specPanel.style.display = 'none';
+            propertyFormPayload.beds = 'N/A';
+            propertyFormPayload.baths = 'N/A';
+          } else {
+            specPanel.style.display = 'grid';
+            propertyFormPayload.beds = document.getElementById('field-beds').value;
+            propertyFormPayload.baths = document.getElementById('field-baths').value;
+          }
+        }
+        
+        syncPayloadToSandboxInspector();
+      });
+    });
+
+    // Checkbox arrays integration mapping track
+    document.querySelectorAll('.amenity-grid input').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const checkedAmenities = [];
+        document.querySelectorAll('.amenity-grid input:checked').forEach(chk => {
+          checkedAmenities.push(chk.value);
+        });
+        propertyFormPayload.amenities = checkedAmenities;
+        syncPayloadToSandboxInspector();
+      });
+    });
+  }
+
+  function navigateToStep(targetStepIndex) {
+    // Validation checks logic guarding forward steps movement boundaries
+    if (targetStepIndex === 2 && activeSubmissionStep === 1) {
+      if(!propertyFormPayload.title || !propertyFormPayload.area || !propertyFormPayload.price) {
+        alert("Please complete required key metadata blocks: Title, Area, and Price structure values.");
+        return;
+      }
+    }
+    
+    if (targetStepIndex === 3 && activeSubmissionStep === 2) {
+      if(propertyFormPayload.photos.length === 0) {
+        alert("Minimum verification checklist threshold requirement missing: Please mount at least 1 image file frame stack.");
+        return;
+      }
+      buildReviewManifestLayoutDOM();
+    }
+
+    // Unhide target tracking workspace block views
+    document.getElementById(`step-panel-${activeSubmissionStep}`).style.display = 'none';
+    document.getElementById(`step-panel-${targetStepIndex}`).style.display = 'block';
+
+    // Update Progress Step Indicators UI State
+    updateProgressTrackerUI(targetStepIndex);
+    
+    activeSubmissionStep = targetStepIndex;
+    window.location.hash = "list-property";
+  }
+
+  function updateProgressTrackerUI(targetStep) {
+    for (let i = 1; i <= 3; i++) {
+      const stepNode = document.getElementById(`pstep-${i}`);
+      const lineNode = document.getElementById(`pline-${i}`);
+      
+      if (!stepNode) continue;
+      
+      stepNode.classList.remove('active', 'done');
+      if (lineNode) lineNode.classList.remove('done');
+
+      if (i < targetStep) {
+        stepNode.classList.add('done');
+        if (lineNode) lineNode.classList.add('done');
+      } else if (i === targetStep) {
+        stepNode.classList.add('active');
+      }
+    }
+  }
+
+  function syncPayloadToSandboxInspector() {
+    const sandboxConsole = document.getElementById('json-sandbox-inspector');
+    if (!sandboxConsole) return;
+    
+    // Deep clone tracking to safely display base64 structures compactly stringified
+    const serializedPayload = JSON.parse(JSON.stringify(propertyFormPayload));
+    serializedPayload.photos = propertyFormPayload.photos.map((str, idx) => `[Base64 Stream Binary Stack Data String - Matrix Length: ${str.length} chars] ${idx === propertyFormPayload.coverPhotoIndex ? '(COVER)' : ''}`);
+    
+    sandboxConsole.textContent = JSON.stringify(serializedPayload, null, 2);
+  }
+
+  /************************************************************
+   * MEDIA ASSET MULTIMODAL UPLOAD WORKFLOW CONTROLLER
+   ************************************************************/
+  function switchUploadTab(targetTabId) {
+    currentActiveUploadTab = targetTabId;
+    
+    document.getElementById('tab-photos-btn').classList.toggle('active', targetTabId === 'photos');
+    document.getElementById('tab-videos-btn').classList.toggle('active', targetTabId === 'videos');
+    
+    document.getElementById('upload-photos-panel').style.display = targetTabId === 'photos' ? 'block' : 'none';
+    document.getElementById('upload-videos-panel').style.display = targetTabId === 'videos' ? 'block' : 'none';
+  }
+
+  function setupDropzoneInterventions() {
+    const pZone = document.getElementById('photo-dropzone');
+    const pInput = document.getElementById('photo-file-input');
+    const vZone = document.getElementById('video-dropzone');
+    const vInput = document.getElementById('video-file-input');
+
+    // Bind structural click redirect triggers
+    pZone.addEventListener('click', () => pInput.click());
+    vZone.addEventListener('click', () => vInput.click());
+
+    // Bind change hooks
+    pInput.addEventListener('change', (e) => executePhotoStagingChain(e.target.files));
+    vInput.addEventListener('change', (e) => executeVideoStagingChain(e.target.files));
+
+    // Simple drag event over animations configurations
+    [pZone, vZone].forEach(zone => {
+      zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        if (zone === pZone) executePhotoStagingChain(e.dataTransfer.files);
+        if (zone === vZone) executeVideoStagingChain(e.dataTransfer.files);
+      });
+    });
+  }
+
+  function executePhotoStagingChain(filesList) {
+    const errorContainer = document.getElementById('upload-error-log');
+    const progressContainer = document.getElementById('photo-progress-wrap');
+    const progressBar = document.getElementById('photo-bar');
+    
+    errorContainer.innerHTML = '';
+    if (filesList.length === 0) return;
+
+    progressContainer.style.display = 'block';
+    progressBar.style.width = '0%';
+
+    let processedCounter = 0;
+    let targetTotalAmount = filesList.length;
+
+    // Simulate cryptographic processing pipeline sequence blocks
+    let uploadTickerSimulation = setInterval(() => {
+      processedCounter += 25;
+      progressBar.style.width = `${Math.min(processedCounter, 100)}%`;
+      
+      if(processedCounter >= 100) {
+        clearInterval(uploadTickerSimulation);
+        setTimeout(() => { progressContainer.style.display = 'none'; }, 400);
+
+        // Commit processing conversion map array loops loops
+        Array.from(filesList).forEach(file => {
+          if (file.size > 5 * 1024 * 1024) {
+            renderUploadSystemAlert(`File framework matrix maximum threshold limit breach: ${file.name} transcends 5MB sizing constraints limits.`);
+            return;
+          }
+          
+          const fileReaderEngine = new FileReader();
+          fileReaderEngine.onload = function(eventArgs) {
+            propertyFormPayload.photos.push(eventArgs.target.result);
+            renderPhotoGridThumbsUI();
+            syncPayloadToSandboxInspector();
+          };
+          fileReaderEngine.readAsDataURL(file);
+        });
+      }
+    }, 150);
+  }
+
+  function executeVideoStagingChain(filesList) {
+    const errorContainer = document.getElementById('upload-error-log');
+    const progressContainer = document.getElementById('video-progress-wrap');
+    const progressBar = document.getElementById('video-bar');
+    
+    errorContainer.innerHTML = '';
+    if (filesList.length === 0) return;
+
+    const file = filesList[0];
+    if (file.type !== "video/mp4") {
+      renderUploadSystemAlert("Codec interface structural framing validation reject mismatch: Standardized pipeline requires formal container MP4 structures profile formats.");
+      return;
+    }
+    if (file.size > 30 * 1024 * 1024) {
+      renderUploadSystemAlert("Scale constraint bound overreach limitation: Property cinematic streams must sit comfortably inside 30MB caps thresholds.");
+      return;
+    }
+
+    progressContainer.style.display = 'block';
+    progressBar.style.width = '0%';
+
+    let progressSim = 0;
+    let streamSimInterval = setInterval(() => {
+      progressSim += 10;
+      progressBar.style.width = `${progressSim}%`;
+      if(progressSim >= 100) {
+        clearInterval(streamSimInterval);
+        setTimeout(() => { progressContainer.style.display = 'none'; }, 400);
+
+        propertyFormPayload.video = {
+          name: file.name,
+          size: (file.size / (1024 * 1024)).toFixed(1) + " MB"
+        };
+        
+        renderVideoPreviewPanelUI();
+        syncPayloadToSandboxInspector();
+      }
+    }, 80);
+  }
+
+  function renderUploadSystemAlert(messageStr) {
+    const errorContainer = document.getElementById('upload-error-log');
+    const item = document.createElement('div');
+    item.className = 'upload-error-item';
+    item.innerHTML = `
+      <svg style="width:16px;height:16px;flex-shrink:0;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap: "round" stroke-linejoin: "round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+      </svg>
+      <span>${messageStr}</span>
+    `;
+    errorContainer.appendChild(item);
+  }
+
+  function renderPhotoGridThumbsUI() {
+    const grid = document.getElementById('photo-grid');
+    grid.innerHTML = '';
+
+    propertyFormPayload.photos.forEach((base64Source, loopIdx) => {
+      const isCoverElement = (loopIdx === propertyFormPayload.coverPhotoIndex);
+      const thumbWrapper = document.createElement('div');
+      thumbWrapper.className = 'media-thumb-wrap';
+      
+      thumbWrapper.innerHTML = `
+        <div class="remove-btn" onclick="purgeImageIndexEntry(${loopIdx}, event)">&times;</div>
+        <img src="${base64Source}" />
+        <div class="watermark-overlay"><span>TRUST PROTOCOL</span></div>
+        ${isCoverElement ? '<div class="cover-badge">Primary Cover</div>' : `<div class="set-cover-btn" onclick="designateCoverImage(${loopIdx}, event)">Set Primary</div>`}
+      `;
+      grid.appendChild(thumbWrapper);
+    });
+  }
+
+  function renderVideoPreviewPanelUI() {
+    const area = document.getElementById('video-preview-area');
+    area.innerHTML = '';
+
+    if(!propertyFormPayload.video) return;
+
+    const card = document.createElement('div');
+    card.className = 'video-preview-card';
+    card.innerHTML = `
+      <div class="video-icon-box">
+        <svg style="width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5" viewBox="0 0 24 24">
+          <polygon points="23 7 16 12 23 17 23 7"></polygon>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <p style="font-size:0.85rem; color:var(--cream); font-weight:500; word-break:break-all;">${propertyFormPayload.video.name}</p>
+        <p style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">${propertyFormPayload.video.size} &nbsp;·&nbsp; Ready for stream pipeline ingestion</p>
+      </div>
+      <div class="remove-btn" style="position:static; width:22px; height:22px; font-size:0.8rem;" onclick="purgeVideoChannelStaging()">&times;</div>
+    `;
+    area.appendChild(card);
+  }
+
+  function designateCoverImage(targetIndex, mouseEvent) {
+    mouseEvent.stopPropagation();
+    propertyFormPayload.coverPhotoIndex = targetIndex;
+    renderPhotoGridThumbsUI();
+    syncPayloadToSandboxInspector();
+  }
+
+  function purgeImageIndexEntry(targetIndex, mouseEvent) {
+    mouseEvent.stopPropagation();
+    propertyFormPayload.photos.splice(targetIndex, 1);
+    
+    // Normalize index configurations positioning rules boundary loops
+    if (propertyFormPayload.coverPhotoIndex >= propertyFormPayload.photos.length) {
+      propertyFormPayload.coverPhotoIndex = 0;
+    }
+    
+    renderPhotoGridThumbsUI();
+    syncPayloadToSandboxInspector();
+  }
+
+  function purgeVideoChannelStaging() {
+    propertyFormPayload.video = null;
+    renderVideoPreviewPanelUI();
+    syncPayloadToSandboxInspector();
+  }
+
+  /************************************************************
+   * REVIEW MANIFEST DATATABLE COMPILER ENGINE
+   ************************************************************/
+  function buildReviewManifestLayoutDOM() {
+    const targetWrapper = document.getElementById('review-data-table');
+    
+    const formattedPricePKR = Number(propertyFormPayload.price).toLocaleString();
+    const concatenatedAmenitiesStr = propertyFormPayload.amenities.length > 0 ? propertyFormPayload.amenities.join(', ') : 'None Designated';
+    const mediaCountDiagnosticString = `${propertyFormPayload.photos.length} Stack Frames Placed ${propertyFormPayload.video ? ' + Cinematic H264 Transport Capsule Attached' : ''}`;
+
+    targetWrapper.innerHTML = `
+      <div class="review-row"><div class="rl">Status Channel Profile</div><div class="rv"><span class="badge badge-pending">Staged Sandbox Draft</span></div></div>
+      <div class="review-row"><div class="rl">Target Allocation Objective</div><div class="rv">For ${propertyFormPayload.purpose}</div></div>
+      <div class="review-row"><div class="rl">Asset Classification Class</div><div class="rv">${propertyFormPayload.type}</div></div>
+      <div class="review-row"><div class="rl">Listing Heading Title</div><div class="rv" style="font-weight:500; color:var(--gold-light);">${propertyFormPayload.title}</div></div>
+      <div class="review-row"><div class="rl">Geographic Coordinates Matrix</div><div class="rv">${propertyFormPayload.area}, ${propertyFormPayload.city}, Pakistan</div></div>
+      <div class="review-row"><div class="rl">Financial Valuation Payload</div><div class="rv" style="font-weight:700;">PKR ${formattedPricePKR}</div></div>
+      <div class="review-row"><div class="rl">Scale Metrics Dimension</div><div class="rv">${propertyFormPayload.size}</div></div>
+      <div class="review-row"><div class="rl">Structural Layout Core Specs</div><div class="rv">Beds: ${propertyFormPayload.beds} / Baths: ${propertyFormPayload.baths}</div></div>
+      <div class="review-row"><div class="rl">Selected Facilities Index</div><div class="rv" style="font-size:0.8rem; line-height:1.4;">${concatenatedAmenitiesStr}</div></div>
+      <div class="review-row"><div class="rl">Attached Media Integrity Payload</div><div class="rv">${mediaCountDiagnosticString}</div></div>
+    `;
+  }
+
+  function commitManifestSubmission() {
+    // Generate secure randomized hash sequence tracking parameters
+    const generatedTrackingID = "PROP-" + Math.floor(10000 + Math.random() * 90000);
+    
+    // Abstract map constructor to push entity object data structures elements into persistent databases array context stores
+    const deepCopiedRecordModelInstance = {
+      id: generatedTrackingID,
+      title: propertyFormPayload.title,
+      purpose: propertyFormPayload.purpose,
+      type: propertyFormPayload.type,
+      city: propertyFormPayload.city,
+      area: propertyFormPayload.area,
+      price: propertyFormPayload.price,
+      size: propertyFormPayload.size,
+      beds: propertyFormPayload.beds,
+      baths: propertyFormPayload.baths,
+      description: propertyFormPayload.description || "No supplemental descriptions records submitted.",
+      amenities: [...propertyFormPayload.amenities],
+      // Fallback injection array strings images if processing base64 targets blocks
+      photos: propertyFormPayload.photos.length > 0 ? [propertyFormPayload.photos[propertyFormPayload.coverPhotoIndex]] : ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"],
+      coverPhotoIndex: 0,
+      video: propertyFormPayload.video,
+      status: "pending",
+      timestamp: "Just now"
+    };
+
+    databaseRegistryStore.unshift(deepCopiedRecordModelInstance);
+    
+    alert(`Success: Asset validation listing record pipeline deployed safely! Assigned payload index reference identifier tag tracking handle: ${generatedTrackingID}. Redirecting layout display focus to audit grids desk panels...`);
+    
+    // Clear wizard entry structures form values configurations state blocks back default setups
+    resetPropertyFormWizardEngineWorkflow();
+    
+    // Refresh admin boards layers matrices output frames layout grids views panels completely
+    rebuildAdminAuditGrid();
+    
+    // Smoothly scroll window viewport targeting tracking elements anchor frames positions
+    document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetPropertyFormWizardEngineWorkflow() {
+    propertyFormPayload = {
+      purpose: 'Sale', type: 'House', title: '', city: 'Karachi', area: '', price: '', size: '', beds: '4', baths: '4', description: '',
+      amenities: ['Gated Community', 'Backup Generator', 'Car Parking', 'Water Boring'], photos: [], coverPhotoIndex: 0, video: null
+    };
+
+    // Reset explicit hardware field nodes data configurations
+    document.getElementById('field-title').value = '';
+    document.getElementById('field-area').value = '';
+    document.getElementById('field-price').value = '';
+    document.getElementById('field-size').value = '';
+    document.getElementById('field-desc').value = '';
+    document.getElementById('field-type').value = 'House';
+    document.getElementById('field-city').value = 'Karachi';
+    document.getElementById('field-beds').value = '4';
+    document.getElementById('field-baths').value = '4';
+    
+    document.getElementById('photo-grid').innerHTML = '';
+    document.getElementById('video-preview-area').innerHTML = '';
+    document.getElementById('upload-error-log').innerHTML = '';
+
+    // Walk user view context backward straight targeting primary workflow step nodes blocks boundaries positions
+    navigateToStep(1);
+    syncPayloadToSandboxInspector();
+  }
+
+  /************************************************************
+   * CENTRALIZED REGULATORY INSPECTION PANELS DASHBOARD ENGINE
+   ************************************************************/
+  function rebuildAdminAuditGrid() {
+    const targetsContainerNode = document.getElementById('admin-listings-target-container');
+    if(!targetsContainerNode) return;
+
+    targetsContainerNode.innerHTML = '';
+    
+    let countingMetricsMap = { all: 0, pending: 0, verified: 0 };
+
+    databaseRegistryStore.forEach(record => {
+      countingMetricsMap.all++;
+      if(record.status === 'pending') countingMetricsMap.pending++;
+      if(record.status === 'verified') countingMetricsMap.verified++;
+
+      // Filter check logic passes interception checks boundaries bounds processing states execution rings configurations
+      if (adminFilteringCriterion !== 'all' && record.status !== adminFilteringCriterion) return;
+
+      const dynamicCardFrame = document.createElement('div');
+      dynamicCardFrame.className = 'admin-card';
+      
+      let badgeMarkupClass = `badge-pending`;
+      if(record.status === 'verified') badgeMarkupClass = 'badge-verified';
+      if(record.status === 'rejected') badgeMarkupClass = 'badge-rejected';
+
+      const compiledMetricsLabelMetaString = `PKR ${Number(record.price).toLocaleString()} &nbsp;·&nbsp; ${record.size} &nbsp;·&nbsp; Beds: ${record.beds} Baths: ${record.baths}`;
+
+      dynamicCardFrame.innerHTML = `
+        <div class="admin-card-top">
+          <div style="display:flex; gap:12px; align-items:center;">
+            <img src="${record.photos[0]}" style="width:50px; height:50px; border-radius:4px; object-fit:cover; border:1px solid rgba(201,168,76,0.2);" />
+            <div>
+              <h4 class="admin-card-title">${record.title}</h4>
+              <div class="admin-card-meta">
+                <span><strong>${record.id}</strong></span>
+                <span>${record.area}, ${record.city}</span>
+              </div>
+            </div>
+          </div>
+          <span class="badge ${badgeMarkupClass}">${record.status}</span>
+        </div>
+        
+        <div style="font-size:0.82rem; color:var(--cream); opacity:0.85; padding:0.25rem 0 0.25rem 62px; line-height:1.4;">
+          ${compiledMetricsLabelMetaString} <br/>
+          <span style="font-size:0.75rem; color:var(--text-muted); display:inline-block; margin-top:4px;">Description Manifest: ${record.description}</span>
+        </div>
+
+        <div class="admin-actions" style="margin-left:62px;">
+          ${record.status === 'pending' ? `
+            <button class="btn-verify" onclick="evaluateInspectionState('${record.id}', 'verified')">Approve Verification</button>
+            <button class="btn-reject" onclick="evaluateInspectionState('${record.id}', 'rejected')">Reject Listing</button>
+          ` : `<span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; padding:4px 0;">Audited Framework Log Entry Line Verified</span>`}
+          <button class="btn-view-details" onclick="alert('Diagnostic Inspection Report Target Reference Manifest Map File Index Data payload: ' + JSON.stringify(${JSON.stringify(record).replace(/"/g, '&quot;')}, null, 2))">Deep Inspect JSON Payload</button>
+        </div>
+      `;
+      
+      targetsContainerNode.appendChild(dynamicCardFrame);
+    });
+
+    // Mirror count variables structural metric numbers inside dashboard badge element frames values arrays loops blocks
+    document.getElementById('count-all').textContent = countingMetricsMap.all;
+    document.getElementById('count-pending').textContent = countingMetricsMap.pending;
+    document.getElementById('count-verified').textContent = countingMetricsMap.verified;
+
+    if(targetsContainerNode.children.length === 0) {
+      targetsContainerNode.innerHTML = `
+        <div style="padding:3rem 1rem; text-align:center; color:var(--text-muted); font-size:0.88rem; border:1px dashed rgba(201,168,76,0.15); border-radius:4px;">
+          Zero active structural pipeline entries found matching target filtering tracking query criteria.
+        </div>
+      `;
+    }
+  }
+
+  function filterAdminGrid(criterionFilterTypeString) {
+    adminFilteringCriterion = criterionFilterTypeString;
+    
+    // Manage visually active highlights attributes assignments configuration paths loops rows loop array ring
+    ['all', 'pending', 'verified'].forEach(type => {
+      document.getElementById(`atab-${type}`).classList.toggle('active', type === criterionFilterTypeString);
+    });
+
+    rebuildAdminAuditGrid();
+  }
+
+  function evaluateInspectionState(targetPropertyHashID, targetStatePayloadResolutionString) {
+    const dataRowMatchIndex = databaseRegistryStore.findIndex(item => item.id === targetPropertyHashID);
+    if(dataRowMatchIndex === -1) return;
+
+    databaseRegistryStore[dataRowMatchIndex].status = targetStatePayloadResolutionString;
+    rebuildAdminAuditGrid();
+  }
+</script>
+
+</body>
+</html>
